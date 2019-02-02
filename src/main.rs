@@ -25,7 +25,7 @@ fn generateCal() {
 fn work() {
     use std::io::{stdin,stdout,Write};
     let mut s=String::new();
-    println!("What would you like to be notifed about? ");
+    println!("What would you like to be notified about? ");
     let mut input = String::new();
      io::stdin()
         .read_line(&mut input)
