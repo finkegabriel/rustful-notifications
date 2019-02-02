@@ -1,3 +1,3 @@
  ln -s /rustful-notifications ~/bin/nog
  
- alias nog='nog'
+ alias nog='cd ~/bin/nog && cargo run'
