@@ -20,14 +20,9 @@ do_start()
     then
         echo "The service is already running"
     else
-        #Run the jar file MATH service
-        # $JAVA -jar /opt/MATH/MATH.jar > /dev/null 2>&1 &
-        #sleep time before the service verification
         sleep 5
         $TELL > log.txt
         #Verify if the service is running
-        # $PGREP -f MATH  > /dev/null
-        # VERIFIER=$?
         if [ $ZERO = $VERIFIER ]
         then
             echo "Service was successfully started"

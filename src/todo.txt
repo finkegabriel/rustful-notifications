@@ -1,7 +1,13 @@
 {
 	"event":[
-	"go running",
-	"10/10/19",
-	"10pm"
+		"work on iceddev stuff",
+		"10am"
+	],
+	"event":[
+		"go running",
+		"7am",
+		"10/10/19"
+		
 	]
+	
 }
