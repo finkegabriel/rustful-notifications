@@ -1,8 +1,7 @@
 {
-	"event":"go running",
-	"time":"10pm"
+	"event":[
+	"go running",
+	"10/10/19",
+	"10pm"
+	]
 }
-
-
-
-
