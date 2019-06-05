@@ -31,7 +31,6 @@ fn main() -> std::io::Result<()> {
     println!("{}", &date.format("%H:%M").to_string());
 
     if timeRn == timeEvent {
-        println!("yay!");
         Command::new("notify-send")
                     .arg("-t")
                     .arg("0")
