@@ -25,37 +25,16 @@ fn main() -> std::io::Result<()> {
     let date = Local::now();
     let systemTime: String = date.format("%H:%M").to_string();  
     let timeRn = [&date.format("%H:%M").to_string()];
-    
-    let timeEvent = &v["event"];
-    // let array: String = [timeEvent];//[&timeEvent.to_string()];
-    let mut array: String = [&timeEvent.to_string()];
 
-    for char in array.chars(){
-        println!("{}",char);
-    }
-    // println!("{:?}",array[0]);
-        // for i in array.iter() {
-        //     for j in timeRn.iter() {
-        //         println!("{} {}",j,i[0]);  
-        //         // if j == i{
-        //         // println!("");
-        //         // }
-        //     }
-          
-        // }   
 
-        // if timeRn == timeEvent {
-        //     Command::new("notify-send")
-        //             .arg("-t")
-        //             .arg("0")
-        //             .arg(event)
-        //             .output().unwrap_or_else(|e| {
-        //                 panic!("falied to run: {}",e);
-        //             });
-        //             break;
-        // }else{
-
-        // }
+            Command::new("notify-send")
+                    .arg("-t")
+                    .arg("0")
+                    .arg(v["event"][0].to_string())
+                    .output().unwrap_or_else(|e| {
+                        panic!("falied to run: {}",e);
+                    });
+      
 
     Ok(())
     
