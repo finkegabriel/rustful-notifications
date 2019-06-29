@@ -1,12 +1,10 @@
 {
-	"event":[
+	"event": [
 		"go running",
 		"07:00",
-		"10/10/19"
-	],
-    "event":[
-		"get to work!!",
-		"20:08",
-		"10/10/19"
+		"go to work",
+		"10:00",
+		"time to eat lunch",
+		"12:30"
 	]
 }
