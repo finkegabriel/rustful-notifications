@@ -1,35 +1,27 @@
 use serde::{Deserialize, Serialize};
-use serde_json::Result;
+use serde_json::{Result, Value};
+// use serde_json::json;
 use std::fs::File;
 use std::io::prelude::*;
 use std::process::Command;
 use std::ffi::OsStr;
 
-//#[derive(Serialize, Deserialize)]
-
-struct Todo {
-    event: String,
-    time: String,
-}
 
 fn main() -> std::io::Result<()> {
     let mut file = File::open("todo.txt")?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
-    //print!("{}",contents);
-   //-----------------------------------------------------------------------------// 
-    let js = contents;
-    //let d: Todo = serde_json::from_str(&js)?;
-    //let mut com = 
-    //println!("{}",d["event"]);
+    let v: Value = serde_json::from_str(&contents)?;
+    let m = v["event"].to_string() + " at " + &v["time"].to_string();
     
-    
-    /*Command::new("notify-send")
+    Command::new("notify-send")
                     .arg("-t")
                     .arg("0")
-                    .arg(d["event"])
+                    .arg(m)
                     .output().unwrap_or_else(|e| {
                         panic!("falied to run: {}",e);
-                    });*/
-    Ok(())
+                    });
+
+        Ok(())
+
 }
