@@ -1,6 +1,6 @@
 {
 	"event":"go running",
-	"time":"10pm"
+	"time":12
 }
 	
 

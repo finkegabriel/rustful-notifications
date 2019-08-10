@@ -4,19 +4,7 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::process::Command;
 use std::ffi::OsStr;
-extern crate chrono;
-use chrono::{DateTime, Utc};
-use chrono::prelude::*;
 
-fn handleTime(x: String) {
-    let now = Local::now();
-    let cuTime = now.format("%H");
-    if cuTime.to_string() == x {
-        println!("{} {} {}","good", cuTime, x);
-    }else{
-        println!("{}","not the same");
-     }
-}
 
 fn main() -> std::io::Result<()> {
     let mut file = File::open("todo.txt")?;
@@ -24,10 +12,6 @@ fn main() -> std::io::Result<()> {
     file.read_to_string(&mut contents)?;
     let v: Value = serde_json::from_str(&contents)?;
     let m = v["event"].to_string() + " at " + &v["time"].to_string();
-    println!("{}",&v["time"]);
-    handleTime(v["time"].to_string());
-
-
 
     Command::new("notify-send")
                     .arg("-t")
