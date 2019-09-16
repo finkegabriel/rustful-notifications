@@ -18,35 +18,34 @@ fn main() -> std::io::Result<()> {
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let v: Value = serde_json::from_str(&contents)?;
-    // let m = v["event"].to_string() + " at " + &v["time"].to_string();
-    for x in 0..2 {
-        // let time: [String; 50] = [&v[format!("{}",x["event"]]];
-        // println!("{}",&v[format!("{}",x)]);
-        let mut y = &v[format!("{}",x)];
-        let mut event = &y["event"].to_string();
-        println!("{}",event);
-        
-
-
-    }
-    println!("{}",&v["1"]["time"]);
-    let now = Local::now();
+     let now = Local::now();
     let cuTime = now.format("%I");
-    
-   if cuTime.to_string() == v["time"].to_string() {
-                    // Command::new("notify-send")
-                    // .arg("-t")
-                    // .arg("0")
-                    // .arg(m)
-                    // .output().unwrap_or_else(|e| {
-                    //     panic!("falied to run: {}",e);
-                    // });
+
+    for x in 0..2 {
+        let mut y = &v[format!("{}",x)];
+        let mut event = &y["event"];
+        let mut time = &y["time"];
+        let m = event.to_string();
+        let l = time.to_string();
+            
+        if &cuTime.to_string() == &time.to_string() {
+            println!("{}",&event);
+                    Command::new("notify-send")
+                    .arg("-t")
+                    .arg("0")
+                    .arg(m + " at " +&l)
+                    .output().unwrap_or_else(|e| {
+                        panic!("falied to run: {}",e);
+                    });
 
         
     }else{
         println!("{}","not the same");
      }
 
+    }
+    println!("{}",&v["1"]["time"]);
+   
         Ok(())
 
 }
