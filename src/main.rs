@@ -7,6 +7,7 @@ use std::ffi::OsStr;
 extern crate chrono;
 use chrono::{DateTime, Utc};
 use chrono::prelude::*;
+use std::env;
 
 fn handleTime(x: String) {
     let now = Local::now();
@@ -19,7 +20,8 @@ fn handleTime(x: String) {
 }
 
 fn main() -> std::io::Result<()> {
-    let mut file = File::open("todo.txt")?;
+    let args: Vec<String> =env::args().collect();
+    let mut file = File::open(&args[1].to_string())?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let v: Value = serde_json::from_str(&contents)?;
