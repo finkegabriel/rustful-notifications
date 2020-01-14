@@ -12,20 +12,24 @@ struct Person {
     data: Vec<String>,
 }
 
+fn notify(msg: &str){
+    Command::new("notify-send")
+    .arg("-t")
+    .arg("0")
+    .arg(msg)
+    .output().unwrap_or_else(|e| {
+        panic!("falied to run: {}",e);
+    });
+}
+
 fn main() -> std::io::Result<()> {
     let mut file = File::open("src/todo.txt")?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
     let js = contents;
     let p: Person = serde_json::from_str(&js)?;
-
-    Command::new("notify-send")
-    .arg("-t")
-    .arg("0")
-    .arg(&p.data[0])
-    .output().unwrap_or_else(|e| {
-        panic!("falied to run: {}",e);
-    });
+    let mut m = &p.data[0];
+    notify(m);
 
     Ok(())
 }
