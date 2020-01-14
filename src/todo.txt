@@ -1,9 +1,10 @@
 {
         "name": "Gabes Calendar",
         "event": 0,
+        "time": "12:41",
         "data": [
             "do work",
-            "do",
+            "code",
             "3"
         ]
     }
