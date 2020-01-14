@@ -29,6 +29,7 @@ fn main() -> std::io::Result<()> {
     let js = contents;
     let p: Person = serde_json::from_str(&js)?;
     let mut m = &p.data[0];
+    println!("apple {}",p.data.len());
     notify(m);
 
     Ok(())
