@@ -1,8 +1,8 @@
 {
-	"event":"go running",
-	"time":"10pm"
-}
-
-
-
-
+        "name": "John Doe",
+        "age": 43,
+        "phones": [
+            "+44 1234567",
+            "+44 2345678"
+        ]
+    }
