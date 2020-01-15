@@ -37,17 +37,18 @@ fn main() -> std::io::Result<()> {
     let date = Local::now();
     let systemTime: String = date.format("%H:%M").to_string();  
     let timeRn = [&date.format("%H:%M").to_string()];
-
-    if d.event.len() != 0 {
-            for (index) in d.time.iter().enumerate() {
-                    // println!("index: {:?}", index); //uncomment to debug
-                    if(index.1 == timeRn[0]){
-                         notify(&d.event[index.0]);
-                    }
-            }
-    }else{
-        notify("You're free")
-    }
+    
+        if d.event.len() != 0 {
+                for (index) in d.time.iter().enumerate() {
+                        // println!("index: {:?}", index); //uncomment to debug
+                        if(index.1 == timeRn[0]){
+                             notify(&d.event[index.0]);
+                        }
+                }
+        }else{
+            notify("You're free")
+        }
+    
 
     Ok(())
 }
