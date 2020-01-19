@@ -1,12 +1,13 @@
+ 
 {
-   "event": [
-      "do work",
-      "go running",
-      "working"
-   ],
-   "time": [
-      "18:37",
-      "12:34",
-      "19:37"
-   ]
+  "event": [
+     "do work",
+     "go running",
+     "go grochey shopping"
+  ],
+  "time": [
+     "16:41",
+     "16:45",
+     "16:33"
+  ]
 }

@@ -16,15 +16,20 @@ struct Data {
     time:Vec<String>
 }
 
-fn notify(msg: &str){
+fn notify(msg: &str,time: &str){
+    let m = msg.to_string()+" at "+time;
     Command::new("notify-send")
     .arg("-t")
     .arg("0")
-    .arg(msg)
+    .arg(m)
     .output().unwrap_or_else(|e| {
         panic!("falied to run: {}",e);
     });
 }  
+
+fn todaysData(){
+    
+}
 
 fn main() -> std::io::Result<()> {
     let mut file = File::open("src/todo.json")?;
@@ -42,11 +47,11 @@ fn main() -> std::io::Result<()> {
                 for (index) in d.time.iter().enumerate() {
                         // println!("index: {:?}", index); //uncomment to debug
                         if(index.1 == timeRn[0]){
-                             notify(&d.event[index.0]);
+                             notify(&d.event[index.0],&d.time[index.0]);
                         }
                 }
         }else{
-            notify("You're free")
+            notify("You're free","")
         }
     
 
