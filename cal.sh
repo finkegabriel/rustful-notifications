@@ -15,3 +15,5 @@ TIMECM=$((TIMECM+1))
 EVENTCM=$((EVENTCM+1))
 
 echo $EVENTCM $TIMECM
+
+ADDEVENT="$(jq '.event[$((EVENTCM))] |= . +' $event /home/blujay/code/rustful-notifications/src/todo.json)"
