@@ -8,12 +8,13 @@ read tim
 
 echo $event, at, $tim, $date
 
-EVENTCM="$(jq '.event | length' /home/blujay/code/rustful-notifications/src/todo.json)" 
-TIMECM="$(jq '.time | length' /home/blujay/code/rustful-notifications/src/todo.json)"
-
-TIMECM=$((TIMECM+1))
-EVENTCM=$((EVENTCM+1))
-
-echo $EVENTCM $TIMECM
-
-ADDEVENT="$(jq '.event[$((EVENTCM))] |= . +' $event /home/blujay/code/rustful-notifications/src/todo.json)"
+if [ -f "events/$date.json" ]; then
+    echo "$date exist"
+    ADDEVENT="$(jq --arg m "$event" '.event[.event | length] |= . + $m' /home/blujay/code/rustful-notifications/events/$date.json > events/$date.tmp && mv events/$date.tmp events/$date.json )"
+    ADDTIME="$(jq '.time[.time | length] |= . + "'$tim'"' /home/blujay/code/rustful-notifications/events/$date.json > events/$date.tmp && mv events/$date.tmp events/$date.json )"
+else 
+    echo "$date does not exist"
+    echo '{ "event": [], "time": [] }' > "events/$date.json"
+    ADDEVENT="$(jq --arg m "$event" '.event[.event | length] |= . + $m' /home/blujay/code/rustful-notifications/events/$date.json > events/$date.tmp && mv events/$date.tmp events/$date.json )"
+    ADDTIME="$(jq '.time[.time | length] |= . + "'$tim'"' /home/blujay/code/rustful-notifications/events/$date.json > events/$date.tmp && mv events/$date.tmp events/$date.json )"
+fi

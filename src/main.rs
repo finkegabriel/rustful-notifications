@@ -34,10 +34,12 @@ fn main() -> std::io::Result<()> {
     let muts = Local::now().date();
     let systemTime: String = date.format("%H:%M").to_string();  
     let timeRn = [&date.format("%H:%M").to_string()];
+    
     let xs: [String; 1] = [date.to_string()];
-    let mut fileName: String = muts.to_string().split("-07:00").collect();
-    println!("{} ",fileName);
-    let fileNameFinal = fileName +".json";
+    let mut time: String = muts.to_string().split("-07:00").collect();
+    println!("{} ",time);
+    let fileNameFinal = time +".json";
+
     let mut file = File::open("events/".to_string()+&fileNameFinal.to_string())?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
