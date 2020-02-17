@@ -56,7 +56,7 @@ fn main() -> std::io::Result<()> {
         }else{
             notify("You're free","")
         }
-    
+        
 
     Ok(())
 }
