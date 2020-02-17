@@ -1,20 +1,19 @@
 #!/bin/bash
-echo Date:
-read date
-echo Event:
-read event 
-echo Time:
-read tim 
+echo "Rustful Notifications"
+echo '$0 = ' $0
+echo '$1 = ' $1 #date
+echo '$2 = ' $2 #event
+echo '$3 = ' $3 #time
 
-echo $event, at, $tim, $date
+echo $2, at, $3, $1
 
-if [ -f "/home/$USER/code/rustful-notifications/events/$date.json" ]; then
-    echo "$date exist"
-    ADDEVENT="$(jq --arg m "$event" '.event[.event | length] |= . + $m' /home/$USER/code/rustful-notifications/events/$date.json > /home/$USER/code/rustful-notifications/events/$date.tmp && mv /home/$USER/code/rustful-notifications/events/$date.tmp /home/$USER/code/rustful-notifications/events/$date.json )"
-    ADDTIME="$(jq '.time[.time | length] |= . + "'$tim'"' /home/$USER/code/rustful-notifications/events/$date.json > /home/$USER/code/rustful-notifications/events/$date.tmp && mv /home/$USER/code/rustful-notifications/events/$date.tmp /home/$USER/code/rustful-notifications/events/$date.json )"
+if [ -f "/home/$USER/code/rustful-notifications/events/$1.json" ]; then
+    echo "$1 exist"
+    ADDEVENT="$(jq --arg m "$2" '.event[.event | length] |= . + $m' /home/$USER/code/rustful-notifications/events/$1.json > /home/$USER/code/rustful-notifications/events/$1.tmp && mv /home/$USER/code/rustful-notifications/events/$1.tmp /home/$USER/code/rustful-notifications/events/$1.json )"
+    ADDTIME="$(jq '.time[.time | length] |= . + "'$3'"' /home/$USER/code/rustful-notifications/events/$1.json > /home/$USER/code/rustful-notifications/events/$1.tmp && mv /home/$USER/code/rustful-notifications/events/$1.tmp /home/$USER/code/rustful-notifications/events/$1.json )"
 else 
-    echo "$date does not exist"
-    echo '{ "event": [], "time": [] }' > "/home/$USER/code/rustful-notifications/events/$date.json"
-    ADDEVENT="$(jq --arg m "$event" '.event[.event | length] |= . + $m' /home/$USER/code/rustful-notifications/events/$date.json > /home/$USER/code/rustful-notifications/events/$date.tmp && mv /home/$USER/code/rustful-notifications/events/$date.tmp /home/$USER/code/rustful-notifications/events/$date.json )"
-    ADDTIME="$(jq '.time[.time | length] |= . + "'$tim'"' /home/$USER/code/rustful-notifications/events/$date.json > /home/$USER/code/rustful-notifications/events/$date.tmp && mv /home/$USER/code/rustful-notifications/events/$date.tmp /home/$USER/code/rustful-notifications/events/$date.json )"
+    echo "$1 does not exist"
+    echo '{ "event": [], "time": [] }' > "/home/$USER/code/rustful-notifications/events/$1.json"
+    ADDEVENT="$(jq --arg m "$2" '.event[.event | length] |= . + $m' /home/$USER/code/rustful-notifications/events/$1.json > /home/$USER/code/rustful-notifications/events/$1.tmp && mv /home/$USER/code/rustful-notifications/events/$1.tmp /home/$USER/code/rustful-notifications/events/$1.json )"
+    ADDTIME="$(jq '.time[.time | length] |= . + "'$3'"' /home/$USER/code/rustful-notifications/events/$1.json > /home/$USER/code/rustful-notifications/events/$1.tmp && mv /home/$USER/code/rustful-notifications/events/$1.tmp /home/$USER/code/rustful-notifications/events/$1.json )"
 fi
